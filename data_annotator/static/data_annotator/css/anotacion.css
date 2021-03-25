@@ -1,0 +1,255 @@
+html, body {
+    overflow: hidden;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+    font-family: 'Lucida Grande', Geneva, Arial, Verdana, sans-serif;
+}
+
+body {
+    /*margin: 10px;*/
+    background: #fff;
+}
+
+.modal-dialog {
+    width: 700px;
+    height: 1000px !important;
+    margin: 1.75rem auto;
+}
+
+:root {
+    /*--family-regular: Montserrat-Regular;*/
+    --family-regular: Arial;
+}
+
+
+.top-navbar {
+    background-color: #000024;
+    max-height: 50px !important;
+    padding-left: 22px;
+}
+
+.top-navbar a {
+    color: #06d2fd !important;
+    font-weight: bold !important;
+}
+
+.top-navbar .dropdown-menu a {
+    color: #000000 !important;
+    font-weight: bold !important;
+}
+
+
+#body_dashboard {
+    background-color: #f7f7f7;
+}
+
+.container-fluid {
+    padding-right: 0px !important;
+    padding-left: 7px !important;
+}
+
+/*div#left-menu-area {*/
+/*    background-color: #000024;*/
+/*    !*max-width: 50px !important;*!*/
+/*    max-height: 100% !important;*/
+/*}*/
+
+ul.section-list {
+    list-style: none !important;
+    padding-left: 0px !important;
+}
+
+li.section-link a:hover, li.section-link a:focus,
+li.section-link span:hover, li.section-link span:focus {
+    color: #d7d72b !important;
+    text-decoration: none !important;
+}
+
+li.section-link {
+    padding-top: 12px;
+}
+
+a.section-link-text i {
+    margin-right: 12px !important;
+}
+
+a.section-link-text,
+span.section-link-text {
+    color: #06d2fd !important;
+}
+
+body, .container-fluid, #left-menu-area, .left-menu-row {
+    height: 100% !important;
+}
+
+
+h1 {
+    margin: 0;
+    padding: 6px;
+    border: 0;
+    font-size: 20pt;
+}
+
+#header {
+    height: 43px;
+    padding: 0;
+    background-color: #eee;
+    border: 1px solid #888;
+}
+
+#subheader {
+    height: 12px;
+    text-align: right;
+    font-size: 10px;
+    color: #555;
+}
+
+#map {
+    height: 580px;
+    border: 1px solid #888;
+}
+
+.olImageLoadError {
+    display: none;
+}
+
+.olControlLayerSwitcher .layersDiv {
+    border-radius: 10px 0 0 10px;
+}
+
+.top-navbar a {
+    color: white !important;
+    font-weight: bold !important;
+}
+
+.navbar-brand {
+    font-size: 18px !important;
+}
+
+#map-region {
+    padding-left: 0 !important;
+    padding-right: 0;
+}
+
+#circle {
+    height: 20px;
+    border-radius: 10px;
+    background-color: red;
+}
+
+#legend-table {
+    font-size: 0.8rem;
+}
+
+p.label-list-header {
+    margin-top: 12px;
+}
+
+div.label-list {
+    max-height: 200px;
+    overflow-y: scroll;
+    overflow-x: scroll;
+}
+
+div.classes-list {
+    max-height: 500px;
+    overflow-y: scroll;
+    overflow-x: scroll;
+}
+
+div.category-list {
+    max-height: 700px;
+    overflow-y: scroll;
+    overflow-x: scroll;
+}
+
+#mouse-position {
+    color: #000000;
+}
+
+div.carousel {
+    max-height: 200px;
+}
+
+#panel-id {
+    display: none;
+}
+
+#category-table_filter {
+    text-align: left !important;
+    margin-left: -11px !important;
+}
+
+#category-table {
+    min-width: 100%;
+}
+
+table.dataTable.stripe tbody tr.odd.selected, table.dataTable.display tbody tr.odd.selected {
+    background-color: #acbad4;
+}
+
+table.dataTable tbody tr.selected {
+    background-color: #b0bed9;
+}
+
+/*#drones-select {*/
+/*    display: none;*/
+/*}*/
+
+/*#sentinel-select {*/
+/*    display: none;*/
+/*}*/
+
+/*#shape-select {*/
+/*    display: none;*/
+/*}*/
+
+#image-select {
+    display: none;
+}
+
+#button-ortofoto {
+    checked : false;
+}
+
+#button-imagen {
+    checked : false;
+}
+
+#import-id {
+    display: none;
+}
+
+#nsamples {
+    display: none;
+}
+
+/*Para aplicar los mismos estilos de los controles a los a*/
+.ol-control a.download-a {
+    display: block;
+    margin: 1px;
+    padding: 0;
+    color: #fff;
+    font-size: 1.14em;
+    font-weight: 700;
+    text-decoration: none;
+    text-align: center;
+    height: 1.375em;
+    width: 1.375em;
+    line-height: .4em;
+    background-color: rgba(0,60,136,.5);
+    border: none;
+    border-radius: 2px;
+}
+
+.ol-control.ol-bar .ol-control a.download-a {
+    margin: 2px 1px;
+    padding-top: 3px;
+}
+
+.ol-control a.download-a:focus, .ol-control a.download-a:hover {
+    text-decoration: none;
+    background-color: rgba(0,60,136,.7);
+}
+

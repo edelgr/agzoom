@@ -1,0 +1,32 @@
+{% extends "layout/base.html" %}
+{% load static %}
+
+{% block title %}Data Explorer{% endblock %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'data_annotator/css/cane_ripe.css' %}"/>
+{% endblock %}
+
+{% block content %}
+    <h1>Imágenes asociadas al proyecto</h1>
+    <button style="margin-bottom: 10px" type="button" class="btn btn-primary" id="btn-cane-ripe">Maduracion</button>
+    <div class="table-responsive">
+        <table class="table table-striped" id="image-table">
+            <thead>
+            <tr>
+                <th></th>
+                <th>Fecha</th>
+                <th>Nombre</th>
+                <th>Plataforma</th>
+            </tr>
+            </thead>
+            <tbody>
+
+            </tbody>
+        </table>
+    </div>
+{% endblock %}
+
+{% block extra_js %}
+    <script type="text/javascript" src="{% static 'data_annotator/js/cane_ripe.js' %}"></script>
+{% endblock %}

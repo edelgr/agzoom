@@ -1,0 +1,32 @@
+{% extends "layout/base.html" %}
+{% load static %}
+
+{% block title %}Data Explorer{% endblock %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'data_annotator/css/background_image.css' %}"/>
+{% endblock %}
+
+{% block content %}
+    <h1>Imágenes asociadas al proyecto</h1>
+    <button style="margin-bottom: 10px" type="button" class="btn btn-primary" id="btn-image-background">Componer imagen de fondo</button>
+    <div class="table-responsive" style="max-height: 80vh">
+        <table class="table table-striped" id="image-table">
+            <thead>
+            <tr>
+                <th></th>
+                <th>Fecha</th>
+                <th>Nombre</th>
+                <th>Plataforma</th>
+            </tr>
+            </thead>
+            <tbody>
+
+            </tbody>
+        </table>
+    </div>
+{% endblock %}
+
+{% block extra_js %}
+    <script type="text/javascript" src="{% static 'data_annotator/js/background_image.js' %}"></script>
+{% endblock %}

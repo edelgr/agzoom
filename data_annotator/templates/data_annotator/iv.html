@@ -1,0 +1,50 @@
+{% extends "layout/base.html" %}
+{% load static %}
+
+{% block title %}Indices de Vegetacion{% endblock %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'data_annotator/css/iv.css' %}"/>
+{% endblock %}
+
+{% block content %}
+    <h1>Imágenes asociadas al proyecto</h1>
+    <button style="margin-bottom: 10px" type="button" class="btn btn-primary" id="btn-image-iv">Crear IV</button>
+    <div class="row" style="height: 100%;">
+    <div class="col-md-6" id="left-area">
+        <div class="table-responsive table-scroll">
+            <table class="table table-striped" id="iv-table">
+                <thead>
+                <tr>
+                    <th></th>
+                    <th>Indice de Vegetación</th>
+                </tr>
+                </thead>
+                <tbody>
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="col-md-6" id="right-area">
+        <div class="table-responsive table-scroll">
+            <table class="table table-striped" id="image-table">
+                <thead>
+                <tr>
+                    <th></th>
+                    <th>Fecha</th>
+                    <th>Nombre</th>
+                    <th>Plataforma</th>
+                </tr>
+                </thead>
+                <tbody>
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}
+
+{% block extra_js %}
+    <script type="text/javascript" src="{% static 'data_annotator/js/iv.js' %}"></script>
+{% endblock %}

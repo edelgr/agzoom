@@ -1,0 +1,25 @@
+{% extends "layout/base.html" %}
+{% load static %}
+
+{% block title %}Anotador{% endblock %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'data_annotator/css/index.css' %}"/>
+{% endblock %}
+
+{% block content %}
+    <h1> Plataforma de Inteligencia Artificial para los estudios de la tierra</h1>
+    <br>
+    <div class="card" style="width: 20rem;">
+        <img class="card-img-top" src="" alt="Card image cap">
+        <div class="card-body">
+            <p class="card-text"> Anotacion de muestras, entrenamiento y clasificacion de imagenes
+                de drones y satelites.</p>
+        </div>
+    </div>
+{% endblock %}
+
+{% block extra_js %}
+    <script type="text/javascript" src="{% static 'data_annotator/js/index.js' %}"></script>
+{% endblock %}
+

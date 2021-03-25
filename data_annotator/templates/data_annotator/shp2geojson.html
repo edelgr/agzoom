@@ -1,0 +1,32 @@
+{% extends "layout/base.html" %}
+{% load static %}
+
+{% block title %}Data Explorer{% endblock %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'data_annotator/css/shp2geojson.css' %}"/>
+{% endblock %}
+
+{% block content %}
+    <h1>ESRI Shapefiles asociados al proyecto</h1>
+    <button style="margin-bottom: 10px" type="button" class="btn btn-primary" id="btn-shp2geojson">shp2geojson
+    </button>
+    <div class="table-responsive">
+        <table class="table table-striped" id="shape-table">
+            <thead>
+            <tr>
+                <th></th>
+                <th>Fecha</th>
+                <th>Descripción</th>
+            </tr>
+            </thead>
+            <tbody>
+
+            </tbody>
+        </table>
+    </div>
+{% endblock %}
+
+{% block extra_js %}
+    <script type="text/javascript" src="{% static 'data_annotator/js/shp2geojson.js' %}"></script>
+{% endblock %}

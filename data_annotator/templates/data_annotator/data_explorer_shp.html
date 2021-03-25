@@ -1,0 +1,31 @@
+{% extends "layout/base.html" %}
+{% load static %}
+
+{% block title %}Data Explorer{% endblock %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'data_annotator/css/data_explorer_shp.css' %}"/>
+{% endblock %}
+
+{% block content %}
+    <h1>ESRI Shapefiles asociados al proyecto</h1>
+    <a class="nav-link fa fa-plus" href="{% url 'add_shape_file' %}" id="add-shape">Agregar ESRI Shapefile</a>
+    <div class="table-responsive">
+        <table class="table table-striped" id="shape-table">
+            <thead>
+            <tr>
+                <th>Fecha</th>
+                <th>Descripción</th>
+                <th>Acciones</th>
+            </tr>
+            </thead>
+            <tbody>
+
+            </tbody>
+        </table>
+    </div>
+{% endblock %}
+
+{% block extra_js %}
+    <script type="text/javascript" src="{% static 'data_annotator/js/data_explorer_shp.js' %}"></script>
+{% endblock %}

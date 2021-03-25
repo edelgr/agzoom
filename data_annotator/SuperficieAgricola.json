@@ -1,0 +1,706 @@
+{
+  "info": {
+    "description": "Superficie Agricola Dataset",
+    "url": "http://anotador.cu",
+    "version": "1.0",
+    "year": 2021,
+    "contributor": "GEOCUBA IC",
+    "date_created": "2021/01/17"
+  },
+  "licenses": [],
+  "categories": [
+    {
+      "level": 5,
+      "classes": [
+        {
+          "cod": "2.1.1.1.1",
+          "label": "Otros cultivos varios",
+          "symbol": {
+            "p": "white",
+            "size": "3",
+            "spacing": "8",
+            "angle": "0",
+            "offset": "5",
+            "scale": "3",
+            "foreground": "#28ae37",
+            "background": "#36f12e"
+          }
+        },
+        {
+          "cod": "2.1.1.1.2",
+          "label": "Maiz",
+          "symbol": {
+            "p": "caps",
+            "size": "5",
+            "spacing": "10",
+            "angle": "0",
+            "offset": "0",
+            "scale": "1",
+            "foreground": "#110304",
+            "background": "#7cff5e"
+          }
+        },
+        {
+          "cod": "2.1.1.1.3",
+          "label": "Sorgo",
+          "symbol": {
+            "p": "pines",
+            "size": "8",
+            "spacing": "8",
+            "angle": "0",
+            "offset": "0",
+            "scale": "3",
+            "foreground": "#f7f227",
+            "background": "#2b9d4e"
+          }
+        },
+        {
+          "cod": "2.1.1.1.4",
+          "label": "Calabaza",
+          "symbol": {
+            "p": "p140",
+            "size": "5",
+            "spacing": "10",
+            "angle": "0",
+            "offset": "0",
+            "scale": "1",
+            "foreground": "#110304",
+            "background": "#a0ff58"
+          }
+        },
+        {
+          "cod": "2.1.1.1.5",
+          "label": "Girasol",
+          "symbol": {
+            "p": "p069",
+            "size": "5",
+            "spacing": "10",
+            "angle": "0",
+            "offset": "0",
+            "scale": "1",
+            "foreground": "#f9ff49",
+            "background": "#609935"
+          }
+        },
+        {
+          "cod": "2.1.1.2.1",
+          "label": "Boniato",
+          "symbol": {
+            "p": "sand",
+            "size": "5",
+            "spacing": "10",
+            "angle": "0",
+            "offset": "0",
+            "scale": "1",
+            "foreground": "#f9ff49",
+            "background": "#609935"
+          }
+        },
+        {
+          "cod": "2.1.1.2.2",
+          "label": "Yuca",
+          "symbol": {
+            "p": "dot",
+            "size": "5",
+            "spacing": "8",
+            "angle": "0",
+            "offset": "0",
+            "scale": "1",
+            "foreground": "#092f16",
+            "background": "#d7e443"
+          }
+        },
+        {
+          "cod": "2.1.1.2.3",
+          "label": "Malanga",
+          "symbol": {
+            "p": "breccia",
+            "size": "5",
+            "spacing": "8",
+            "angle": "0",
+            "offset": "0",
+            "scale": "1",
+            "foreground": "#092f16",
+            "background": "#d7e443"
+          }
+        },
+        {
+          "cod": "2.1.1.2.4",
+          "label": "Ñame",
+          "symbol": {
+            "p": "white",
+            "size": "8",
+            "spacing": "8",
+            "angle": "0",
+            "offset": "0",
+            "scale": "3",
+            "foreground": "#ef3d4f",
+            "background": "#d0a21c"
+          }
+        },
+        {
+          "cod": "2.1.1.2.5",
+          "label": "Papa",
+          "symbol": {
+            "p": "vine",
+            "size": "8",
+            "spacing": "8",
+            "angle": "0",
+            "offset": "0",
+            "scale": "3",
+            "foreground": "#0e360b",
+            "background": "#f9c222"
+          }
+        },
+        {
+          "cod": "2.1.1.2.6",
+          "label": "Jengibre",
+          "symbol": {
+            "p": "crosses",
+            "size": "8",
+            "spacing": "8",
+            "angle": "0",
+            "offset": "0",
+            "scale": "3",
+            "foreground": "#0e360b",
+            "background": "#ab8617"
+          }
+        },
+        {
+          "cod": "2.1.1.3.1",
+          "label": "Otras hortalizas",
+          "symbol": {
+            "p": "white",
+            "size": "5",
+            "spacing": "8",
+            "angle": "0",
+            "offset": "0",
+            "scale": "3",
+            "foreground": "#f7a23b",
+            "background": "#2b9d4e"
+          }
+        },
+        {
+          "cod": "2.1.1.3.2",
+          "label": "Zanahoria",
+          "symbol": {
+            "p": "pine",
+            "size": "5",
+            "spacing": "8",
+            "angle": "0",
+            "offset": "0",
+            "scale": "3",
+            "foreground": "#f7a23b",
+            "background": "#2b9d4e"
+          }
+        },
+        {
+          "cod": "2.1.1.3.3",
+          "label": "Rábano",
+          "symbol": {
+            "p": "dot",
+            "size": "5",
+            "spacing": "8",
+            "angle": "0",
+            "offset": "0",
+            "scale": "3",
+            "foreground": "#f7335e",
+            "background": "#2b9d4e"
+          }
+        },
+        {
+          "cod": "2.1.1.3.4",
+          "label": "Cebolla",
+          "symbol": {
+            "p": "conglomerate",
+            "size": "5",
+            "spacing": "8",
+            "angle": "0",
+            "offset": "0",
+            "scale": "3",
+            "foreground": "#f7e6eb",
+            "background": "#2b9d4e"
+          }
+        },
+        {
+          "cod": "2.1.1.3.5",
+          "label": "Ajo",
+          "symbol": {
+            "p": "sand",
+            "size": "5",
+            "spacing": "8",
+            "angle": "0",
+            "offset": "0",
+            "scale": "3",
+            "foreground": "#f7e6eb",
+            "background": "#2b9d4e"
+          }
+        },
+        {
+          "cod": "2.1.1.3.6",
+          "label": "Espinacas",
+          "symbol": {
+            "p": "vine",
+            "size": "5",
+            "spacing": "8",
+            "angle": "0",
+            "offset": "0",
+            "scale": "3",
+            "foreground": "#f7335e",
+            "background": "#2b9d4e"
+          }
+        },
+        {
+          "cod": "2.1.1.3.7",
+          "label": "Acelgas",
+          "symbol": {
+            "p": "caps",
+            "size": "5",
+            "spacing": "8",
+            "angle": "0",
+            "offset": "0",
+            "scale": "3",
+            "foreground": "#f7335e",
+            "background": "#2b9d4e"
+          }
+        },
+        {
+          "cod": "2.1.1.3.8",
+          "label": "Lechugas",
+          "symbol": {
+            "p": "p102",
+            "size": "5",
+            "spacing": "8",
+            "angle": "0",
+            "offset": "0",
+            "scale": "3",
+            "foreground": "#f7335e",
+            "background": "#2b9d4e"
+          }
+        },
+        {
+          "cod": "2.1.1.3.9",
+          "label": "Berenjenas",
+          "symbol": {
+            "p": "square",
+            "size": "5",
+            "spacing": "8",
+            "angle": "0",
+            "offset": "0",
+            "scale": "3",
+            "foreground": "#6b3baa",
+            "background": "#2b9d4e"
+          }
+        },
+        {
+          "cod": "2.1.1.3.10",
+          "label": "Pepino",
+          "symbol": {
+            "p": "vine",
+            "size": "5",
+            "spacing": "8",
+            "angle": "0",
+            "offset": "0",
+            "scale": "3",
+            "foreground": "#f1f1b6",
+            "background": "#2b9d4e"
+          }
+        },
+        {
+          "cod": "2.1.1.3.11",
+          "label": "Tomate",
+          "symbol": {
+            "p": "dot",
+            "size": "5",
+            "spacing": "8",
+            "angle": "0",
+            "offset": "0",
+            "scale": "3",
+            "foreground": "#f11337",
+            "background": "#2b9d4e"
+          }
+        },
+        {
+          "cod": "2.1.1.3.12",
+          "label": "Pimiento",
+          "symbol": {
+            "p": "smiley",
+            "size": "5",
+            "spacing": "8",
+            "angle": "0",
+            "offset": "0",
+            "scale": "3",
+            "foreground": "#f11337",
+            "background": "#2b9d4e"
+          }
+        },
+        {
+          "cod": "2.1.1.3.13",
+          "label": "Col",
+          "symbol": {
+            "p": "p140",
+            "size": "5",
+            "spacing": "8",
+            "angle": "0",
+            "offset": "0",
+            "scale": "3",
+            "foreground": "#c3f13e",
+            "background": "#2b9d4e"
+          }
+        },
+        {
+          "cod": "2.1.1.3.14",
+          "label": "Remolacha",
+          "symbol": {
+            "p": "p140",
+            "size": "5",
+            "spacing": "8",
+            "angle": "0",
+            "offset": "5",
+            "scale": "3",
+            "foreground": "#f187c1",
+            "background": "#2b9d4e"
+          }
+        },
+        {
+          "cod": "2.1.1.3.15",
+          "label": "Ajies",
+          "symbol": {
+            "p": "crosses",
+            "size": "5",
+            "spacing": "8",
+            "angle": "0",
+            "offset": "5",
+            "scale": "3",
+            "foreground": "#f15418",
+            "background": "#2b9d4e"
+          }
+        },
+        {
+          "cod": "2.1.1.4.1",
+          "label": "Frijoles",
+          "symbol": {
+            "p": "hatch",
+            "size": "5",
+            "spacing": "8",
+            "angle": "0",
+            "offset": "5",
+            "scale": "3",
+            "foreground": "#17ae1a",
+            "background": "#d7d015"
+          }
+        },
+        {
+          "cod": "2.1.1.4.2",
+          "label": "Garbanzos",
+          "symbol": {
+            "p": "hatch",
+            "size": "7",
+            "spacing": "8",
+            "angle": "0",
+            "offset": "5",
+            "scale": "3",
+            "foreground": "#17ae1a",
+            "background": "#d7d015"
+          }
+        },
+        {
+          "cod": "2.1.1.4.3",
+          "label": "Soja",
+          "symbol": {
+            "p": "hatch",
+            "size": "3",
+            "spacing": "8",
+            "angle": "0",
+            "offset": "5",
+            "scale": "3",
+            "foreground": "#17ae1a",
+            "background": "#d7d015"
+          }
+        },
+        {
+          "cod": "2.1.1.4.4",
+          "label": "Maní",
+          "symbol": {
+            "p": "hatch",
+            "size": "3",
+            "spacing": "8",
+            "angle": "0",
+            "offset": "5",
+            "scale": "3",
+            "foreground": "#ae99a1",
+            "background": "#d7d015"
+          }
+        },
+        {
+          "cod": "2.1.2.1.1",
+          "label": "Arroz de secano",
+          "symbol": {
+            "p": "nylon",
+            "size": "3",
+            "spacing": "8",
+            "angle": "0",
+            "offset": "5",
+            "scale": "3",
+            "foreground": "#28ae37",
+            "background": "#d7c797"
+          }
+        },
+        {
+          "cod": "2.1.2.1.2",
+          "label": "Arroz de regadío",
+          "symbol": {
+            "p": "dolomite",
+            "size": "3",
+            "spacing": "8",
+            "angle": "0",
+            "offset": "5",
+            "scale": "3",
+            "foreground": "#28ae37",
+            "background": "#d7c797"
+          }
+        },
+        {
+          "cod": "2.1.3.1.1",
+          "label": "Tabaco",
+          "symbol": {
+            "p": "white",
+            "size": "3",
+            "spacing": "8",
+            "angle": "0",
+            "offset": "5",
+            "scale": "3",
+            "foreground": "#28ae37",
+            "background": "#7a623d"
+          }
+        },
+        {
+          "cod": "2.1.3.1.2",
+          "label": "Tabaco tapado",
+          "symbol": {
+            "p": "clay",
+            "size": "3",
+            "spacing": "8",
+            "angle": "0",
+            "offset": "5",
+            "scale": "3",
+            "foreground": "#28ae37",
+            "background": "#7a623d"
+          }
+        },
+        {
+          "cod": "2.2.1.1.1",
+          "label": "Otros cultivos permanentes",
+          "symbol": {
+            "p": "white",
+            "size": "3",
+            "spacing": "8",
+            "angle": "0",
+            "offset": "5",
+            "scale": "3",
+            "foreground": "#28ae37",
+            "background": "#0d390b"
+          }
+        },
+        {
+          "cod": "2.2.1.1.2",
+          "label": "Henequén",
+          "symbol": {
+            "p": "pines",
+            "size": "3",
+            "spacing": "8",
+            "angle": "0",
+            "offset": "5",
+            "scale": "3",
+            "foreground": "#28ae37",
+            "background": "#0d390b"
+          }
+        },
+        {
+          "cod": "2.2.2.1.1",
+          "label": "Caña de azúcar",
+          "symbol": {
+            "p": "p102",
+            "size": "3",
+            "spacing": "8",
+            "angle": "0",
+            "offset": "5",
+            "scale": "2",
+            "foreground": "#28ae37",
+            "background": "#0d390b"
+          }
+        },
+        {
+          "cod": "2.2.3.1.1",
+          "label": "Cítricos",
+          "symbol": {
+            "p": "circle",
+            "size": "5",
+            "spacing": "8",
+            "angle": "0",
+            "offset": "0",
+            "scale": "3",
+            "foreground": "#f7f227",
+            "background": "#2b9d4e"
+          }
+        },
+        {
+          "cod": "2.2.4.1.1",
+          "label": "Otros frutales",
+          "symbol": {
+            "p": "square",
+            "size": "8",
+            "spacing": "8",
+            "angle": "0",
+            "offset": "0",
+            "scale": "3",
+            "foreground": "#f7f227",
+            "background": "#2b9d4e"
+          }
+        },
+        {
+          "cod": "2.2.4.2.1",
+          "label": "Guayaba",
+          "symbol": {
+            "p": "forest",
+            "size": "8",
+            "spacing": "8",
+            "angle": "0",
+            "offset": "0",
+            "scale": "3",
+            "foreground": "#ef3d4f",
+            "background": "#8de424"
+          }
+        },
+        {
+          "cod": "2.2.4.3.1",
+          "label": "Mango",
+          "symbol": {
+            "p": "p170",
+            "size": "8",
+            "spacing": "8",
+            "angle": "0",
+            "offset": "0",
+            "scale": "3",
+            "foreground": "#2eef70",
+            "background": "#e4c45d"
+          }
+        },
+        {
+          "cod": "2.2.4.4.1",
+          "label": "Piña",
+          "symbol": {
+            "p": "hexagon",
+            "size": "5",
+            "spacing": "8",
+            "angle": "0",
+            "offset": "0",
+            "scale": "1",
+            "foreground": "#092f16",
+            "background": "#e4c45d"
+          }
+        },
+        {
+          "cod": "2.2.4.5.1",
+          "label": "Fruta Bomba",
+          "symbol": {
+            "p": "square",
+            "size": "5",
+            "spacing": "8",
+            "angle": "0",
+            "offset": "0",
+            "scale": "1",
+            "foreground": "#092f16",
+            "background": "#e4c45d"
+          }
+        },
+        {
+          "cod": "2.2.5.1.1",
+          "label": "Platano",
+          "symbol": {
+            "p": "square",
+            "size": "8",
+            "spacing": "8",
+            "angle": "0",
+            "offset": "0",
+            "scale": "6",
+            "foreground": "#092f16",
+            "background": "#e4c45d"
+          }
+        },
+        {
+          "cod": "2.3.1.1.1",
+          "label": "Otros pastos cultivados",
+          "symbol": {
+            "p": "rock",
+            "size": "8",
+            "spacing": "8",
+            "angle": "0",
+            "offset": "0",
+            "scale": "3",
+            "foreground": "#f7f227",
+            "background": "#2b9d4e"
+          }
+        },
+        {
+          "cod": "2.3.1.1.2",
+          "label": "Pastos acolchonados",
+          "symbol": {
+            "p": "rocks",
+            "size": "8",
+            "spacing": "8",
+            "angle": "0",
+            "offset": "0",
+            "scale": "3",
+            "foreground": "#f7f227",
+            "background": "#2b9d4e"
+          }
+        },
+        {
+          "cod": "2.3.1.1.3",
+          "label": "Kingrass",
+          "symbol": {
+            "p": "swamp",
+            "size": "8",
+            "spacing": "8",
+            "angle": "0",
+            "offset": "0",
+            "scale": "3",
+            "foreground": "#f7f227",
+            "background": "#2b9d4e"
+          }
+        },
+        {
+          "cod": "2.3.2.1.1",
+          "label": "Pastos naturales",
+          "symbol": {
+            "p": "grass",
+            "size": "8",
+            "spacing": "8",
+            "angle": "0",
+            "offset": "0",
+            "scale": "3",
+            "foreground": "#f7f227",
+            "background": "#2b9d4e"
+          }
+        },
+        {
+          "cod": "2.4.1.1.1",
+          "label": "Áreas agrícolas heterogéneas",
+          "symbol": {
+            "p": "chaos",
+            "size": "8",
+            "spacing": "8",
+            "angle": "0",
+            "offset": "0",
+            "scale": "3",
+            "foreground": "#f7f227",
+            "background": "#2b9d4e"
+          }
+        }
+      ],
+      "scales": "1: 2 000 a 1: 500",
+      "scope": "Local con muchos detalles"
+    }
+  ]
+}

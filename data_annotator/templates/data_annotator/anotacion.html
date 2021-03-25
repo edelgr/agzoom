@@ -1,0 +1,135 @@
+{% extends "layout/base.html" %}
+{% load static %}
+
+{% block title %}Anotacion{% endblock %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'data_annotator/css/ol.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'data_annotator/css/ol-layerswitcher.css' %}"/>
+    <link rel="stylesheet" href="{% static 'data_annotator/css/ol-ext.min.css' %}"/>
+    <link rel="stylesheet" href="{% static 'data_annotator/css/anotacion.css' %}"/>
+{% endblock %}
+
+{% block content %}
+    <div class="row" style="height: 100%">
+        <div class="col-md-10" id="map-region">
+            <div id="map" class="map"></div>
+            <div id="pie-panel" style="min-height: 200px;">
+            <!-- Nav tabs -->
+            <ul class="nav nav-tabs" id="myTab" role="tablist">
+                <li class="nav-item">
+                    <a class="nav-link active" id="coordenadas-tab" data-toggle="tab" href="#coordenadas" role="tab"
+                       aria-controls="home" aria-selected="true">Coordenadas</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="bd-campos-tab" data-toggle="tab" href="#campos" role="tab"
+                       aria-controls="profile" aria-selected="false">BD Campos</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="bd-prog-tab" data-toggle="tab" href="#programacion" role="tab"
+                       aria-controls="messages" aria-selected="false">BD Prog. Corte</a>
+                </li>
+            </ul>
+
+            <!-- Tab panes -->
+            <div class="tab-content" style="padding: 5px;">
+                <div class="tab-pane fade show active" id="coordenadas" role="tabpanel" aria-labelledby="coordenadas-tab">
+
+                    <form>
+                        <label>Proyección</label>
+                        <select id="projection">
+                            <option value="EPSG:4326">EPSG:4326</option>
+                            <option value="EPSG:3857">EPSG:3857</option>
+                        </select>
+                    </form>
+
+                    <label>Posicion</label>
+                    <div id="mouse-position"></div>
+
+                </div>
+                <div class="tab-pane fade" id="campos" role="tabpanel" aria-labelledby="bd-campos-tab">
+                    <div id="information"></div>
+                    <div id="information-feature"></div>
+                </div>
+                <div class="tab-pane fade" id="programacion" role="tabpanel" aria-labelledby="bd-prog-tab-tab">
+                    M
+                </div>
+            </div>
+        </div>
+
+        </div>
+        <div class="right-sidebar col-md-2"
+             style="color: white; padding-top: 10px;background-color: #000024e0; max-height: 100vh !important; overflow-y: auto; padding-right: 30px;">
+
+            <select class="form-control" id="image-select">
+                <option value="">Selecciona imagen del repositorio</option>
+            </select>
+
+            <select class="form-control" id="drones-select">
+                <option value="">Selecciona fecha imagen de drones</option>
+            </select>
+            <select class="form-control" id="sentinel-select">
+                <option value="">Selecciona fecha imagen de sentinel</option>
+            </select>
+            <select class="form-control" id="shape-select">
+                <option value="">Selecciona shape file</option>
+            </select>
+            <div id="panel-id">
+                <p class="label-list-header">Leyenda:</p>
+                <div class="label-list">
+                    <table class="table table-bordered table-striped w-auto" id="legend-table">
+                        <thead>
+                        <tr>
+                            <th>Color</th>
+                            <th>Nombre</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <br>
+            <div id="etiq-id">
+                <select class="form-control" id="label-select">
+                </select>
+                <div id="circle"></div>
+                <span id="nsamples"></span>
+            </div>
+            <input type="file" class="form-control-file" id="import-id">
+            <button type="button" class="btn btn-primary" id="explorar-id"
+                    style="margin-top: 15px; margin-bottom: 15px">Explorar
+            </button>
+
+            <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+                <ol class="carousel-indicators">
+                    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                    <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                    <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+                </ol>
+                <div class="carousel-inner">
+                </div>
+                <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button"
+                   data-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="carousel-control-next" href="#carouselExampleIndicators" role="button"
+                   data-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                </a>
+            </div>
+
+        </div>
+    </div>
+{% endblock %}
+
+{% block extra_js %}
+    <!-- script staticfiles application  -->
+    <script type="text/javascript" src="{% static 'data_annotator/js/ol.js' %}"></script>
+    <script type="text/javascript" src="{% static 'data_annotator/js/ol-layerswitcher.js' %}"></script>
+    <script type="text/javascript" src="{% static 'data_annotator/js/ol-ext.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'data_annotator/js/anotacion.js' %}"></script>
+    <script type="text/javascript" src="{% static 'data_annotator/js/csrf.js' %}"></script>
+{% endblock %}

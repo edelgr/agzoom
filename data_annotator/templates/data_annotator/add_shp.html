@@ -1,0 +1,24 @@
+{% extends "layout/base.html" %}
+{% load static %}
+
+{% block title %}Agregar shape file{% endblock %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'data_annotator/css/add_shape.css' %}"/>
+{% endblock %}
+
+{% block content %}
+    <h1>Adicionar ESRI Shape</h1>
+    <div class="form-area">
+        <form action="{% url 'salvar_shape_file' %}" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn btn-primary upload-btn" style="width: 150px;">Enviar</button>
+        </form>
+    </div>
+
+{% endblock %}
+
+{% block extra_js %}
+    <script type="text/javascript" src="{% static 'data_annotator/js/add_shp.js' %}"></script>
+{% endblock %}

@@ -1,0 +1,20 @@
+{% extends "layout/base.html" %}
+{% load static %}
+
+{% block title %}DB programacion de corte{% endblock %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'data_annotator/css/prog_corte.css' %}"/>
+{% endblock %}
+
+{% block content %}
+    <h1>Cargar la base de datos de programacion de corte</h1>
+    <h1>Cpa	Fecha	Bloque	Campo	Variedad	Cepa	Edad	Pol caña	Pol Jugo	Pureza	ID	Brix	Brix Inf.	Brix Sup.	IM	Fibra	Rdto	ha	t/ha	t </h1>
+    <h1>CSV file sin encabezado</h1>
+    <input type="file" class="form-control-file" id="btn-import">
+{% endblock %}
+
+{% block extra_js %}
+    <script type="text/javascript" src="{% static 'data_annotator/js/jquery.csv.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'data_annotator/js/prog_corte.js' %}"></script>
+{% endblock %}

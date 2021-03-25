@@ -1,0 +1,563 @@
+{% load admin_urls %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Remote Sensing Data Annotator</title>
+    <!-- Required meta tags -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="{% static 'data_annotator/css/bootstrap.css' %}"/>
+    <link rel="stylesheet" href="{% static "data_annotator/css/fonts/fontawesome/css/all.min.css" %}">
+    <link rel="stylesheet" href="{% static 'data_annotator/css/ol.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'data_annotator/css/ol-layerswitcher.css' %}"/>
+    {#    <link rel="stylesheet" href="{% static 'data_annotator/css/ol-ext.min.css' %}"/>#}
+    <link rel="stylesheet" href="{% static 'data_annotator/css/anotacion.css' %}"/>
+    <link rel="stylesheet" href="{% static 'data_annotator/css/wheelcolorpicker.css' %}"/>
+    <link rel="stylesheet" href="{% static 'data_annotator/css/dataTables.bootstrap4.min.css' %}"/>
+    {#    <link rel="stylesheet" href="{% static 'data_annotator/css/jquery.dataTables.min.css' %}"/>#}
+
+    <style>
+        label {
+            width: 7em;
+            text-align: right;
+            display: inline-block;
+        }
+
+        input[type=number] {
+            width: 4em;
+        }
+
+        container {
+            position: relative;
+            background: red;
+        }
+
+        #options-id {
+            position: static;
+        }
+
+        #button-id {
+            position: absolute;
+            left: 350px;
+            top: 660px;
+        }
+
+        #pselect {
+            max-width: 300px;
+            box-shadow: 1px 1px 3px #000;
+            background: #fff;
+            top: 400px;
+            position: absolute;
+        }
+
+        #map1 {
+            border: 2px solid #000;
+        }
+
+        #color {
+            background-color: white;
+            border: 2px solid #000;
+            color: white;
+            padding: 5px 5px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+        }
+
+        #bg {
+            background-color: white;
+            border: 2px solid #000;
+            color: white;
+            padding: 5px 5px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+        }
+
+        #pselect > div {
+            float: left;
+            width: 50px;
+            height: 40px;
+            background-color: #fff;
+            border: 2px solid #000;
+            box-sizing: border-box;
+        }
+
+        #add_category {
+            display: none;
+        }
+
+        #sel_category {
+            display: none;
+        }
+
+        #welcome {
+            display: block;
+        }
+
+        #pselect > div:hover {
+            border-color: green;
+        }
+    </style>
+
+</head>
+<body style="background-color: #aad3df">
+<div class="container-fluid main-content">
+    <header>
+        <nav class="navbar navbar-expand-md row top-navbar">
+            <a class="navbar-brand" href="" style="margin-right: 30px !important; font-size: 18px !important;">
+                <i class="fas fa-globe-americas" style="font-weight: bold !important;"></i>
+                Anotación de Datos de Teledetección
+            </a>
+            <a class="navbar-brand" href="{% url 'admin:index' %}" style="margin-right: 20px !important;"
+               target="_blank">
+                <i class="fas fa-shield-alt"></i>
+                Admininistración
+            </a>
+            <a class="navbar-brand" href="{% url 'dashboard_home' %}">
+                <i class="fas fa-clipboard"></i>
+                Tablero de Procesamiento
+            </a>
+        </nav>
+    </header>
+
+    <div class="container-fluid">
+        <div class="row left-menu-row">
+            <div class="col-md-2" id="left-menu-area">
+                <div class="dropdown">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Album de patrones
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                        <button class="dropdown-item" type="button" id="button_add_category">
+                            Adicionar nueva categoría
+                        </button>
+                        <button class="dropdown-item" type="button" id="buttom_sel_category">
+                            Seleccionar nueva categoría
+                        </button>
+                    </div>
+                </div>
+                <div class="dropdown">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Anotaciones
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                        <a class="dropdown-item" type="button" href="{% url 'project_map' %}">Cargar proyecto</a>
+                        <button class="dropdown-item" type="button">Another action</button>
+                        <button class="dropdown-item" type="button">Something else here</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-10" id="blackboard">
+                <div id="welcome">
+                    <H5>Programa Anotador</H5>
+                </div>
+                <div id="add_category">
+                    Cargar fichero de categorias del album:
+                    <input type="file" class="form-control-file" id="import-category">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="category-list">
+                                <table class="table display table-striped table-bordered w-auto" style="width:100%"
+                                       id="category-table">
+                                    <thead>
+                                    <tr>
+                                        <th>Código</th>
+                                        <th>Clase</th>
+                                        <th>Simbolo</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody id="cuerpo">
+                                    </tbody>
+                                    <tfoot>
+                                    <tr>
+                                        <th>Código</th>
+                                        <th>Clase</th>
+                                        <th>Simbolo</th>
+                                    </tr>
+                                    </tfoot>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <!-- Map div -->
+                            <div id="map1" style="width:450px; height:200px;"></div>
+                            <div class="container">
+                                <div id="pselect"></div>
+                                <div id="options-id">
+                                    <label>Size:</label>
+                                    <input id="size" type="number" min=0 value=5 onchange="refresh()"/>
+                                    <label>Spacing: </label>
+                                    <input id="spacing" type="number" min=0 value=10 onchange="refresh()"/>
+                                    <label>Scale: </label>
+                                    <input id="scale" type="number" value=1 onchange="refresh()" min=0
+                                           step=0.5/>
+                                    <label>Offset: </label>
+                                    <input id="offset" type="number" value=0 onchange="refresh()"/>
+                                    <label>Angle: </label>
+                                    <input id="angle" type="number" value=0 onchange="refresh()"/>
+                                    <small>(deg)</small>
+                                    <div>
+                                        Color:
+                                        <input id="color" onchange="refresh()" class="colorpicker"/>
+                                    </div>
+                                    <div>
+                                        Background:
+                                        <input id="bg" onchange="refresh()" class="colorpicker"/>
+                                    </div>
+                                </div>
+                                <div id="button-id">
+                                    <button id="export-category" type="button" class="btn btn-primary">
+                                        Subir Categoria
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="sel_category">
+                    <div class="col-md-8" id="map-region">
+                        <div id="map" class="map"></div>
+                    </div>
+                    <div class="right-sidebar col-md-2" style="color: white !important; padding-top: 10px;background-color: #000024e0; max-height: 100vh !important; overflow-y: auto; padding-right: 30px;">
+                        <select class="form-control" id="proj-select">
+                            <option value="">Selecciona categoria</option>
+                            {% if project_list %}
+                                {% for project in project_list %}
+                                    <option value="{{ project.pk }}">{{ project.project_name }}</option>
+                                {% endfor %}
+                            {% endif %}
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- js -->
+<script type="text/javascript" src="{% static 'data_annotator/js/jquery.js' %}"></script>
+<script type="text/javascript" src="{% static 'data_annotator/js/popper.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'data_annotator/js/bootstrap.js' %}"></script>
+<script type="text/javascript" src="{% static "data_annotator/css/fonts/fontawesome/js/all.min.js" %}"></script>
+
+
+<!-- script staticfiles application  -->
+<script type="text/javascript" src="{% static 'data_annotator/js/ol.js' %}"></script>
+<script type="text/javascript" src="{% static 'data_annotator/js/ol-layerswitcher.js' %}"></script>
+<script type="text/javascript" src="{% static 'data_annotator/js/ol-ext.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'data_annotator/js/anotacion.js' %}"></script>
+<script type="text/javascript" src="{% static 'data_annotator/js/csrf.js' %}"></script>
+<script type="text/javascript" src="{% static 'data_annotator/js/jquery.wheelcolorpicker.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'data_annotator/js/jquery.dataTables.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'data_annotator/js/dataTables.bootstrap4.min.js' %}"></script>
+
+<script>
+    let lat = "{{ latitude}}"
+    let lon = "{{ longitude}}"
+    $(function () {
+        init(lon, lat);
+    })
+</script>
+
+<script type="text/javascript">
+    $("#button_add_category").on("click", function () {
+        $('#welcome').css("display", "none")
+        $('#add_category').css("display", "block")
+        $('#sel_category').css("display", "none")
+    })
+
+    $("#buttom_sel_category").on("click", function () {
+        $('#welcome').css("display", "none")
+        $('#add_category').css("display", "none")
+        $('#sel_category').css("display", "block")
+    })
+
+    var refreh;
+    var imgFile = 'http://127.0.0.1:8000/static/data_annotator/images/pattern.png';
+
+    ol.style.FillPattern.addPattern("white", {char: ""});
+    ol.style.FillPattern.addPattern("bug (fontawesome)", {char: '\uf188', size: 12, font: "10px FontAwesome"});
+    ol.style.FillPattern.addPattern("smiley", {char: '\uf118', size: 20, angle: true, font: "15px FontAwesome"});
+    ol.style.FillPattern.addPattern("p102", {char: '\uf102', size: 20, angle: true, font: "15px FontAwesome"});
+    ol.style.FillPattern.addPattern("p069", {char: '\uf069', size: 20, angle: true, font: "15px FontAwesome"});
+    ol.style.FillPattern.addPattern("p170", {char: '\uf170', size: 20, angle: true, font: "15px FontAwesome"});
+    ol.style.FillPattern.addPattern("p201", {char: '\uf201', size: 20, angle: true, font: "15px FontAwesome"});
+    ol.style.FillPattern.addPattern("p140", {char: '\uf140', size: 20, angle: true, font: "15px FontAwesome"});
+
+    $('.colorpicker').wheelColorPicker({format: 'css'});
+
+    var pat = "hatch"
+    var spattern = $("#pselect");
+
+    for (var i in ol.style.FillPattern.prototype.patterns) {
+        var p = new ol.style.FillPattern({pattern: i, color: '#00'});
+
+        $("<div>").attr('title', i)
+            .css("background-image", 'url("' + p.getImage().toDataURL() + '")')
+            .click(function () {
+                pat = $(this).attr("title");
+                refresh();
+            })
+            .appendTo(spattern);
+    }
+
+    var p = new ol.style.FillPattern({image: new ol.style.Icon({src: imgFile})});
+    $("<div>").attr('title', 'Image (PNG)')
+        .css("background-image", 'url("' + imgFile + '")')
+        .click(function () {
+            pat = $(this).attr("title");
+            refresh();
+        })
+        .appendTo(spattern);
+
+
+    var pclass
+
+    // Redraw map
+    refresh = function () {
+        $("#color").css("background-color", $("#color").val());
+        $("#bg").css("background-color", $("#bg").val());
+        // $("#pselect").hide();
+        vector.changed();
+        if ($.inArray(pat, ["hatch", "cross", "dot", "circle", "square", "tile"]) < 0) {
+            $("#size").prop("disabled", true);
+            $("#spacing").prop("disabled", true);
+            $("#angle").prop("disabled", true);
+            $("#angle").next().text("");
+        } else {
+            $("#size").prop("disabled", false);
+            $("#spacing").prop("disabled", false);
+            $("#angle").prop("disabled", false);
+            if (pat == "hatch") $("#angle").next().text("(deg)");
+            else $("#angle").next().text("(bool)");
+        }
+        // Calculate image to be drawn outside the map
+        var p = new ol.style.FillPattern(
+            {
+                pattern: pat,
+                image: (pat == 'Image (PNG)') ? new ol.style.Icon({src: imgFile}) : undefined,
+                ratio: 2,
+                color: $("#color").val(),
+                fill: new ol.style.Fill({color: $("#bg").val()}),
+                size: Number($("#size").val()),
+                spacing: Number($("#spacing").val()),
+                angle: Number($("#angle").val())
+            });
+        $(pclass).css('background-image', 'url(' + p.getImage().toDataURL() + ')');
+
+        $(pclass).data("p", pat);
+        $(pclass).data("size", $("#size").val());
+        $(pclass).data("spacing", $("#spacing").val());
+        $(pclass).data("angle", $("#angle").val());
+        $(pclass).data("offset", $("#offset").val());
+        $(pclass).data("scale", $("#scale").val());
+        $(pclass).data("foreground", $("#color").val());
+        $(pclass).data("background", $("#bg").val());
+    };
+
+
+    var layer1 = new ol.layer.Tile({
+        title: 'GEOLOC',
+        type: 'base',
+        visible: true,
+        source: new ol.source.XYZ({
+            url: 'http://mapas.geocuba.cu/osm_tiles/{z}/{x}/{y}.png'
+        })
+    });
+
+
+    let view1 = new ol.View({
+        projection: 'EPSG:3857',
+        center: ol.proj.transform([lon, lat], 'EPSG:4326', 'EPSG:3857'),
+        zoom: 10,
+        maxZoom: 23
+    })
+
+    // The map
+    var map = new ol.Map
+    ({
+        target: 'map1',
+        view: view1,
+        layers: [layer1]
+    });
+
+
+    function getStyle(feature) {
+        var p = pat;
+        return [new ol.style.Style(
+            {
+                fill: new ol.style.FillPattern(
+                    {
+                        pattern: (p != 'Image (PNG)') ? p : undefined,
+                        image: (p == 'Image (PNG)') ? new ol.style.Icon({src: imgFile}) : undefined,
+                        ratio: 1,
+                        icon: p == 'Image (PNG)' ? new ol.style.Icon({src: 'data/target.png'}) : undefined,
+                        color: $("#color").val(),
+                        offset: Number($("#offset").val()),
+                        scale: Number($("#scale").val()),
+                        fill: new ol.style.Fill({color: $("#bg").val()}),
+                        size: Number($("#size").val()),
+                        spacing: Number($("#spacing").val()),
+                        angle: Number($("#angle").val())
+                    })
+            })];
+    }
+
+
+    // Nouvelle source de donnee
+    var vector = new ol.layer.Vector(
+        {
+            source: new ol.source.Vector(),
+            style: getStyle
+        })
+    map.addLayer(vector);
+    vector.getSource().addFeature(new ol.Feature(new ol.geom.Polygon([[[259274, 6398696], [63595, 5958419], [635956, 5772524], [259274, 6398696]]])));
+
+    // global so we can remove it later
+    var interaction = new ol.interaction.Draw
+    ({
+        type: 'Polygon',
+        source: vector.getSource()
+    });
+    map.addInteraction(interaction);
+
+    refresh();
+
+
+    $("#import-category").on('change', function (e) {
+        var filename = this.files[0];
+        var reader = new FileReader();
+
+        reader.onload = function (e) {
+            var aa = JSON.parse(e.target.result)
+            let classes = aa.categories[0].classes
+
+            $("#cuerpo").html("");
+            for (let k = 0; k < classes.length; k++) {
+                let cod = classes[k].cod;
+                let lab = classes[k].label;
+                let p = classes[k].symbol["pattern"]
+                let size = classes[k].symbol["size"]
+                let spacing = classes[k].symbol["spacing"]
+                let angle = classes[k].symbol["angle"]
+                let offset = classes[k].symbol["offset"]
+                let scale = classes[k].symbol["scale"]
+                let foreground = classes[k].symbol["foreground"]
+                let background = classes[k].symbol["background"]
+
+                console.log("cod :" + cod);
+                //let line = '<tr><td>' + cod + '</td>' + '<td>' + lab + '<td style="background-color: ' + col + '"></td>' + '</tr>'
+                let cad_id = 'select-' + k.toString()
+
+                let line = '<tr><td>' + cod + '</td><td>' + lab + '</td><td>' +
+                    '<div style="box-shadow: 1px 1px 3px #000; background: #fff; margin-left: 0.5em; ' +
+                    'display: inline-block; width: 50px;  height: 40px;" ' +
+                    'id="' + cad_id +
+                    '" data-p="' + p +
+                    '" data-size="' + size +
+                    '" data-spacing="' + spacing +
+                    '" data-angle="' + angle +
+                    '" data-offset="' + offset +
+                    '" data-scale="' + scale +
+                    '" data-foreground="' + foreground +
+                    '" data-background="' + background +
+                    '"></div>' +
+                    '</td></tr>'
+
+                console.log(line);
+                $("#cuerpo").append(line)
+
+                var symbol = new ol.style.FillPattern(
+                    {
+                        pattern: p,
+                        image: (pat == 'Image (PNG)') ? new ol.style.Icon({src: imgFile}) : undefined,
+                        ratio: 2,
+                        color: foreground,
+                        fill: new ol.style.Fill({color: background}),
+                        size: Number(size),
+                        spacing: Number(spacing),
+                        angle: Number(angle),
+                        offset: Number(offset),
+                        scale: Number(scale)
+                    });
+
+                let select_id = "#" + cad_id
+
+
+                $(select_id).css('background-image', 'url(' + symbol.getImage().toDataURL() + ')');
+
+                $(select_id).click(function () {
+                    pclass = this
+                    // $("#pselect").toggle();
+                });
+            }
+        }
+
+        reader.readAsText(filename, "json");
+    })
+
+
+    $("#export-category").on("click", function () {
+
+        var dict = {};
+
+        dict["info"] = {
+            "description": "Superficie Agricola Dataset",
+            "url": "http://anotador.cu",
+            "version": "1.0",
+            "year": 2021,
+            "contributor": "GEOCUBA IC",
+            "date_created": "2021/01/17"
+        }
+
+        dict["licenses"] = []
+
+        var list_clas = []
+        $("table#category-table tbody#cuerpo tr").each(function () {
+            var dict_cat = {}
+            dict_cat["cod"] = $(this)['0']['cells']['0'].innerText
+            dict_cat["label"] = $(this)['0']['cells']['1'].innerText
+
+            var dict_symbol = {}
+            dict_symbol["p"] = $($(this)['0']['cells']['2']['firstChild']).data('p')
+            dict_symbol["size"] = $($(this)['0']['cells']['2']['firstChild']).data('size')
+            dict_symbol["spacing"] = $($(this)['0']['cells']['2']['firstChild']).data('spacing')
+            dict_symbol["angle"] = $($(this)['0']['cells']['2']['firstChild']).data('angle')
+            dict_symbol["offset"] = $($(this)['0']['cells']['2']['firstChild']).data('offset')
+            dict_symbol["scale"] = $($(this)['0']['cells']['2']['firstChild']).data('scale')
+            dict_symbol["foreground"] = $($(this)['0']['cells']['2']['firstChild']).data('foreground')
+            dict_symbol["background"] = $($(this)['0']['cells']['2']['firstChild']).data('background')
+
+            dict_cat["symbol"] = dict_symbol
+
+            list_clas.push(dict_cat)
+        });
+
+        var dict_level = {}
+        dict_level["level"] = 5
+        dict_level["classes"] = list_clas
+        dict_level["scales"] = "1: 2 000 a 1: 500"
+        dict_level["scope"] = "Local con muchos detalles"
+
+        var list_categ = []
+        list_categ.push(dict_level)
+        dict["categories"] = list_categ
+
+        let json_category = JSON.stringify(dict);
+
+        console.log(json_category)
+    })
+
+
+</script>
+
+</body>
+</html>

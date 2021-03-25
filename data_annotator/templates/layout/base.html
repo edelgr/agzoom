@@ -1,0 +1,206 @@
+{% load admin_urls %}
+{% load static %}
+
+<!doctype html>
+<html lang="en">
+<head>
+    <title>{% block title %}My amazing site{% endblock %}</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    {% csrf_token %}
+
+    <!-- Styles -->
+    <!-- ESTILOS GENERALES -->
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="{% static 'data_annotator/css/bootstrap.css' %}"/>
+    <link rel="stylesheet" href="{% static "data_annotator/css/fonts/fontawesome/css/all.min.css" %}">
+    <link rel="stylesheet" type="text/css" href="{% static "data_annotator/css/base.css" %}">
+
+    {% block extra_css %}{% endblock %}
+</head>
+<body>
+
+<Header>
+    <nav class="navbar navbar-expand-md row top-navbar">
+        <a class="navbar-brand" href="/" style="margin-right: 30px !important; font-size: 18px !important;">
+            <i class="fas fa-globe-americas" style="font-weight: bold !important;"></i>
+            IA Tierra
+        </a>
+        <select class="form-control" id="proj-select">
+            <option value="">Selecciona proyecto</option>
+            {% if project_list %}
+                {% for project in project_list %}
+                    <option value="{{ project.pk }}">{{ project.project_name }}</option>
+                {% endfor %}
+            {% endif %}
+        </select>
+        <div class="dropdown" style="margin-left: auto; margin-right: 10px;">
+            <button class="btn btn-outline-secondary dropdown-toggle fa fa-user-circle" type="button"
+                    id="dropdownMenuButton"
+                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                    style="color: whitesmoke;border: none;height: 31px;font-weight: bold;">
+                {{ user.username }}
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <a class="dropdown-item" href="{% url 'logout' %}">Salir</a>
+            </div>
+        </div>
+    </nav>
+</Header>
+
+<div class="container-fluid">
+    <div style="display: none" id="loading-block-div">
+    </div>
+    <div class="loading-block" style="display: none" id="loading-block">
+        <div class="spinner-border"></div>
+        <p style="margin-top: 10px; font-weight: bold; text-align: center;">Procesando...</p>
+    </div>
+    <div class="row" style="height: 100%;">
+
+        <div class="col-md-2 left-menu-row" id="left-menu-area">
+            <ul class="section-list">
+                <li class="section-link">
+                    <a class="section-link-text" href="{% url 'index' %}"
+                       target="_blank">
+                        <i class="fas fa-home"></i> Inicio
+                    </a>
+                </li>
+                <li class="section-link">
+                    <a class="section-link-text" data-toggle="collapse" href="#collapseDataExplorer" role="button"><i
+                            class="fas fa-database"></i>
+                        Explorador </a>
+                    <div class="collapse" id="collapseDataExplorer">
+                        <ul>
+                            <li><a class="" href="{% url 'data_explorer_img' %}">Imágenes</a>
+                            </li>
+                            <li><a class="" href="{% url 'data_explorer_shp' %}">ESRI shape</a>
+                            </li>
+                            <li><a class="" href="{% url 'prog_corte' %}">DB Programacion</a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+
+                <li class="section-link">
+                    <a class="section-link-text" data-toggle="collapse" href="#collapsePDI" role="button"><i
+                            class="fas fa-images"></i>
+                        Proc. Dig. Imágenes </a>
+                    <div class="collapse" id="collapsePDI">
+                        <ul>
+                            <li><a class="" href="{% url 'background_image' %}">Componer fondos</a>
+                            </li>
+                            <li><a class="" href="{% url 'create_mbtiles' %}">Crear mbtiles</a>
+                            </li>
+                            <li><a class="" href="{% url 'iv' %}">Indices de vegetación</a>
+                            </li>
+                            <li><a class="" href="{% url 'cloud_mask' %}">Enmascarar nubes</a>
+                            </li>
+                            <li><a class="" href="{% url 'spectral_features' %}">Rasgos espectrales</a>
+                            </li>
+                            <li><a class="" href="{% url 'extract_sites' %}">Extraer sitios</a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+
+                <li class="section-link">
+                    <a class="section-link-text" data-toggle="collapse" href="#collapseESRI" role="button"><i
+                            class="fas fa-map"></i>
+                        Proc. Shapefiles </a>
+                    <div class="collapse" id="collapseESRI">
+                        <ul>
+                            <li><a class="" href="{% url 'shp2geojson' %}">Shp2GeoJson</a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+
+
+                <li class="section-link">
+                    <a class="section-link-text" href="{% url 'annotation' %}" role="button"><i
+                            class="fas fa-map-marked"></i>
+                        Anotador </a>
+                </li>
+
+                <li class="section-link">
+                    <a class="section-link-text" data-toggle="collapse" href="#collapseDL" role="button"><i
+                            class="fas fa-microchip"></i>
+                        Deep Learning </a>
+                    <div class="collapse" id="collapseDL">
+                        <ul>
+                            <li><a class="" href="{% url 'background_image' %}"> Entrenar</a>
+                            </li>
+                            <li><a class="" href="{% url 'create_mbtiles' %}"> Servir modelo</a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+
+                <li class="section-link">
+                    <a class="section-link-text" data-toggle="collapse" href="#collapseDL" role="button"><i
+                            class="fas fa-layer-group"></i>
+                        Cana de azucar </a>
+                    <div class="collapse" id="collapseDL">
+                        <ul>
+                            <li>
+                                <a class="" href="{% url 'ripe_image' %}">Maduracion</a>
+                            </li>
+                            <li>
+                                <a class="" href="{% url 'create_mbtiles' %}">Poblacion</a>
+                            </li>
+                            <li>
+                                <a class="" href="{% url 'create_mbtiles' %}">Malezas</a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+
+                <li class="section-link">
+                    <a class="section-link-text" data-toggle="collapse" href="#collapseDL" role="button"><i
+                            class="fas fa-layer-group"></i>
+                        Cultivos varios </a>
+                    <div class="collapse" id="collapseDL">
+                        <ul>
+                            <li>
+                                <a class="" href="{% url 'background_image' %}">Clasificacion</a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+
+                <li class="section-link">
+                    <a class="section-link-text" href="{% url 'admin:index' %}"
+                       target="_blank">
+                        <i class="fas fa-shield-alt"></i> Administración
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div class="col-md-10">
+            {% block content %}{% endblock %}
+        </div>
+    </div>
+</div>
+
+
+<!-- JAVASCRIPTS GENERALES -->
+<script type="text/javascript" src="{% static 'data_annotator/js/base.js' %}"></script>
+<script type="text/javascript" src="{% static 'data_annotator/js/jquery.js' %}"></script>
+<script type="text/javascript" src="{% static 'data_annotator/js/popper.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'data_annotator/js/bootstrap.js' %}"></script>
+<script type="text/javascript" src="{% static 'data_annotator/js/csrf.js' %}"></script>
+
+<script type="text/javascript">
+    let lat = "{{ latitude }}"
+    let lon = "{{ longitude }}"
+    window.ap = "{{ user.profile.active_proj }}"
+    $(function () {
+        init(lon, lat, window.ap);
+    });
+</script>
+{% block extra_js %}{% endblock %}
+
+</body>
+</html>
