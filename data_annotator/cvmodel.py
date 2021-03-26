@@ -61,3 +61,5 @@ def build_cvred(input_shape=(120, 120, 14), n_output_classes=10):
     return modelo
 
 
+# prueba
+print('hello')
